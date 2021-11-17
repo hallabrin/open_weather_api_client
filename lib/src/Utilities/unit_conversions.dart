@@ -104,7 +104,7 @@ num? temperatureToSelectedUnit({
 }
 
 num? precipitationToSelectedUnit({
-  required double? amount,
+  required num? amount,
   required PrecipitationUnit unit,
 }) {
   String result = "";

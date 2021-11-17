@@ -1,5 +1,6 @@
 import 'package:open_weather_api_client/src/Current_Weather/current_weather_model.dart';
 import 'package:open_weather_api_client/src/Utilities/location_coords.dart';
+
 import '../Utilities/units_settings.dart';
 import 'Data_Models/one_call_components.dart';
 
@@ -116,10 +117,12 @@ class OneCallWeather {
       minutelyWeather: minutelyWeather,
       hourlyWeather: hourlyWeather,
       dailyWeather: dailyWeather,
-      alertsWeather: OneCallAlertsWeather.fromJson(
-        json['alerts'],
-        settings,
-      ),
+      alertsWeather: json['alerts'] != null
+          ? OneCallAlertsWeather.fromJson(
+              json['alerts'],
+              settings,
+            )
+          : null,
     );
   }
 }

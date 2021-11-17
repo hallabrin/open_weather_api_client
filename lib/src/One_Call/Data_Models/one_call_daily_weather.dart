@@ -251,7 +251,7 @@ class OneCallDailyWeather {
     );
 
     // Formatting the probability of precipitation
-    int? pop = (json['pop']) * 100;
+    num? pop = (json['pop']) * 100;
     int? precipitationChance = int.parse(pop!.toStringAsFixed(0));
 
     // Formatting the amount of rain

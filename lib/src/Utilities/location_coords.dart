@@ -3,8 +3,8 @@ class LocationCoords {
   LocationCoords({required this.longitude, required this.latitude});
 
   /// The longitude of the place
-  final double longitude;
+  final num longitude;
 
   /// The latitude of the place
-  final double latitude;
+  final num latitude;
 }
