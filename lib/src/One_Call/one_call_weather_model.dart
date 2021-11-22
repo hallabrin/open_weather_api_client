@@ -35,7 +35,7 @@ class OneCallWeather {
   List<OneCallDailyWeather?>? dailyWeather;
 
   /// National weather alerts provided by different major national weather warning systems
-  OneCallAlertsWeather? alertsWeather;
+  List<OneCallAlertsWeather?>? alertsWeather;
 
   OneCallWeather({
     this.locationCoords,
@@ -102,6 +102,19 @@ class OneCallWeather {
     } else {
       dailyWeather = null;
     }
+    List? alertsPayload = json['alerts'];
+    List<OneCallAlertsWeather?>? alertsWeather;
+
+    if (alertsPayload != null) {
+      alertsWeather = alertsPayload.map((e) {
+        return OneCallAlertsWeather.fromJson(
+          e,
+          settings,
+        );
+      }).toList();
+    } else {
+      dailyWeather = null;
+    }
 
     return OneCallWeather(
       locationCoords: LocationCoords(
@@ -117,12 +130,7 @@ class OneCallWeather {
       minutelyWeather: minutelyWeather,
       hourlyWeather: hourlyWeather,
       dailyWeather: dailyWeather,
-      alertsWeather: json['alerts'] != null
-          ? OneCallAlertsWeather.fromJson(
-              json['alerts'],
-              settings,
-            )
-          : null,
+      alertsWeather: alertsWeather,
     );
   }
 }
